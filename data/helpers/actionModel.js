@@ -10,18 +10,18 @@ module.exports = {
 
 function get(id) {
   let query = db('actions');
-
+  console.log("from helper",id)
   if (id) {
     return query
-      .where('id', id)
+      .where('project_id', id)
       .first()
-      .then((action) => {
-        if (action) {
-          return mappers.actionToBody(action);
-        } else {
-          return null;
-        }
-      });
+      // .then((action) => {
+      //   if (action) {
+      //     return mappers.actionToBody(action);
+      //   } else {
+      //     return null;
+      //   }
+      // });
   } else {
     return query.then((actions) => {
       return actions.map((action) => mappers.actionToBody(action));
